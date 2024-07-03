@@ -1,5 +1,7 @@
 import os
 
+restaurantes = ['pizza','cebola']
+
 def exibir_nome_do_programa():
     print("""
 ░██████╗░█████╗░██████╗░░█████╗░██████╗░  ███████╗██╗░░██╗██████╗░██████╗░███████╗░██████╗░██████╗
@@ -21,20 +23,57 @@ def finalizar_app():
     # os.system('clear') 
     print('Finalizando o app')
 
-def escolher_opcao():
-    opcao_escolhida = int(input('Escolha uma opção: '))
-    # opcao_escolhida = int(opcao_escolhida)
+def opcao_invalida():
+    exibir_subtitulo()
+    voltar_ao_menu_principal
 
-    if opcao_escolhida == 1: 
-        print('Cadastrar restaurante')
-    elif opcao_escolhida == 2: 
-        print('Listar restaurantes')
-    elif opcao_escolhida == 3: 
-        print('Ativar restaurante')
-    else: 
-        finalizar_app()
+def cadastrar_restaurante():
+
+    exibir_subtitulo('Cadastro de novos restaurantes')
+    nome_do_restaurante = input('Digite o nome do restaurante que deseja cadastrar: ')
+    restaurantes.append(nome_do_restaurante)
+    print(f'O restaurante  {nome_do_restaurante} foi cadastrado com sucesso\n')
+    voltar_ao_menu_principal()
+
+def listar_restaurantes():
+    exibir_subtitulo('Listando restaurantes')
+     
+    for restaurante in restaurantes:
+        print(f'.{restaurante}')
+
+    voltar_ao_menu_principal()
+
+def voltar_ao_menu_principal():
+    input('Digite uma tecla para voltar o menu inicial: ')
+    main()
+
+def exibir_subtitulo(texto):
+    os.system('cls')
+    print(texto)
+    print()
+  
+    
+def escolher_opcao():
+    try:
+        opcao_escolhida = int(input('Escolha uma opção: '))
+        # opcao_escolhida = int(opcao_escolhida)
+
+        if opcao_escolhida == 1: 
+            cadastrar_restaurante()
+        elif opcao_escolhida == 2: 
+            listar_restaurantes()
+        elif opcao_escolhida == 3: 
+            print('Ativar restaurante')
+        elif opcao_escolhida == 4: 
+            finalizar_app()
+        else: 
+            opcao_invalida()
+    except:
+        opcao_invalida()
+        
 
 def main():
+    os.system('cls')
     exibir_nome_do_programa()
     exibir_opcoes()
     escolher_opcao()
