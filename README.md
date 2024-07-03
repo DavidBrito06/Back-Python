@@ -1,1 +1,1 @@
--Sistema básico de Restaurabte com python
+-Sistema básico de Restaurante com python
